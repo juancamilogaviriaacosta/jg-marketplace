@@ -1,0 +1,21 @@
+<div class="hero">
+    <h1>Compra fácil y rápido</h1>
+    <p>Encuentra miles de productos al mejor precio</p>
+</div>
+
+<div class="products">
+    <h2>Productos Destacados</h2>
+    <div class="grid" id="grid">
+        @for (item of items; track $index) {
+        <div class="card">
+            <img src="{{item.picture}}">
+            <div class="title">
+            {{item.name}}
+            </div>
+            <div class="price">
+            {{item.price | currency : 'USD' : 'symbol' : '1.0-0' }}
+            </div>
+        </div>
+        }
+    </div>
+</div>
