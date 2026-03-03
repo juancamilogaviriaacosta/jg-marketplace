@@ -1,6 +1,7 @@
 package co.com.jg.services;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ public class ProductServices {
 	@Autowired
 	private ProductRepository repo;
 	
-	public ResponseEntity<String> initDatabase() {
+	public ResponseEntity<Map<String, String>> initDatabase() {
 		List<Product> products = List.of(
 			new Product(null, "sku001", "iPhone 14", "Apple", "https://img.freepik.com/free-psd/iphone-15-pro-mockup-front-back-view_1332-60588.jpg", 5000.0, 5),
 			new Product(null, "sku002", "Galaxy S23", "Samsung", "https://img.freepik.com/premium-psd/samsung-galaxy-s23-mockup-front-view_1332-54971.jpg", 4200.0, 10),
@@ -23,10 +24,24 @@ public class ProductServices {
 			new Product(null, "sku004", "Audifonos Sony", "Noise cancel", "https://img.freepik.com/free-photo/black-cordless-headphones-gray-textile_417767-474.jpg",600.0, 20)
 		);
 		repo.saveAll(products);
-		return ResponseEntity.ok("ok");
+		return ResponseEntity.ok(Map.of("message","ok"));
 	}
 
 	public List<Product> findAll() {
 		return repo.findAll();
+	}
+
+	public ResponseEntity<Map<String, String>> createProduct(Product product) {
+		repo.save(product);
+		return ResponseEntity.ok(Map.of("message","ok"));
+	}
+	
+	public Product findById(Long id) {
+		return repo.findById(id).get();
+	}
+	
+	public ResponseEntity<Map<String, String>> deleteById(Long id) {
+		repo.deleteById(id);
+		return ResponseEntity.ok(Map.of("message","deleted"));
 	}
 }

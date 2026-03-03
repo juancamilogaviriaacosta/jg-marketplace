@@ -1,0 +1,97 @@
+/* Contenedor principal */
+.container {
+  width: 500px;
+  margin: 40px auto;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Caja del formulario */
+form {
+  background: white;
+  padding: 45px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Título */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Labels */
+label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #444;
+}
+
+/* Inputs */
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: border 0.2s;
+}
+
+/* Focus */
+input:focus,
+textarea:focus {
+  outline: none;
+  border: 1px solid #3483fa;
+}
+
+/* Textarea altura */
+textarea {
+  height: 80px;
+  resize: vertical;
+}
+
+/* Botón */
+button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #3483fa;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+/* Hover botón */
+button:hover {
+  background-color: #2968c8;
+}
+
+/* Botón deshabilitado */
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Imagen preview */
+img {
+  margin-top: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 5px;
+  background: white;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+
+  .container {
+    width: 90%;
+  }
+
+}

@@ -1,0 +1,67 @@
+<div class="container">
+
+  <h2>Crear Producto</h2>
+
+  <form #productForm="ngForm" (ngSubmit)="saveProduct(productForm)">
+
+    <div>
+      <label>SKU</label>
+      <input 
+        type="text"
+        name="sku"
+        [(ngModel)]="product.sku"
+        required>
+    </div>
+
+    <div>
+      <label>Nombre</label>
+      <input 
+        type="text"
+        name="name"
+        [(ngModel)]="product.name"
+        required>
+    </div>
+
+    <div>
+      <label>Descripción</label>
+      <textarea
+        name="description"
+        [(ngModel)]="product.description">
+      </textarea>
+    </div>
+
+    <div>
+      <label>Imagen (URL)</label>
+      <input 
+        type="text"
+        name="picture"
+        [(ngModel)]="product.picture">
+    </div>
+
+    <div>
+      <label>Precio</label>
+      <input 
+        type="number"
+        name="price"
+        [(ngModel)]="product.price"
+        required>
+    </div>
+
+    <div>
+      <label>Stock</label>
+      <input 
+        type="number"
+        name="stock"
+        [(ngModel)]="product.stock"
+        required>
+    </div>
+
+    <br>
+
+    <button type="submit" [disabled]="productForm.invalid">
+      Guardar Producto
+    </button>
+
+  </form>
+
+</div>

@@ -1,0 +1,79 @@
+/* Contenedor */
+.container {
+  width: 90%;
+  margin: 30px auto;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Título */
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
+}
+
+/* Header */
+thead {
+  background-color: #3483fa; /* estilo MercadoLibre */
+  color: white;
+}
+
+th {
+  padding: 12px;
+  text-align: left;
+  font-size: 14px;
+}
+
+/* Filas */
+td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+/* Hover */
+tr:hover {
+  background-color: #f5f7fa;
+}
+
+/* Imágenes */
+img {
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+/* Precio */
+td:nth-child(5) {
+  font-weight: bold;
+  color: #2a7a2a;
+}
+
+/* Stock bajo */
+.low-stock {
+  color: red;
+  font-weight: bold;
+}
+
+.mb-3 {
+  margin-bottom: 15px;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+
+  table {
+    font-size: 12px;
+  }
+
+  img {
+    width: 50px;
+  }
+
+}

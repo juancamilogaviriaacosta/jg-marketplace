@@ -2,8 +2,11 @@ import { Routes } from '@angular/router';
 import { AdminProducts } from './admin-products/admin-products';
 import { MainProducts } from './main-products/main-products';
 import { ProductResolver } from './main-products/product-resolver';
+import { ProductMng } from './product-mng/product-mng';
 
 export const routes: Routes = [
     { path: '', component: MainProducts, resolve: { items: ProductResolver } },
-    { path: 'admin-products', component: AdminProducts },
+    { path: 'admin-products', component: AdminProducts, resolve: { items: ProductResolver } },
+    { path: 'product-mng', component: ProductMng },
+    { path: 'product-mng/:id', component: ProductMng },
 ];
