@@ -1,0 +1,32 @@
+<div class="container">
+  <h2>Lista de Usuarios</h2>
+
+    <div class="mb-3">
+        <button class="btn btn-success" (click)="createUser()">Crear Usuario</button>
+    </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Nombre de Usuario</th>
+        <th>Rol</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    @for (item of items; track item.id) {
+        <tr>
+        <td>{{item.name}}</td>
+        <td>{{item.username}}</td>
+        <td>{{item.role}}</td>
+        <td>
+          <button class="btn btn-primary" (click)="editUser(item)">Editar</button>&nbsp;
+          <button class="btn btn-danger" (click)="deleteUser(item)">Eliminar</button>
+        </td>
+      </tr>
+    }  
+    </tbody>
+  </table>
+</div>
