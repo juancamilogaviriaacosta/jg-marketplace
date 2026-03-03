@@ -1,5 +1,6 @@
 package co.com.jg.services;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -30,7 +31,7 @@ public class CartService {
 	
 	@Autowired
 	private CartItemRepository cir;
-	
+
 	public Cart findByUserId(Long id) {
 		Cart cart = null;
 		Optional<Cart> optional = cr.findByUserId(id);
@@ -59,6 +60,24 @@ public class CartService {
 		CartItem ci = cir.findById(Long.valueOf(map.get("id").toString())).get();
 		ci.setQuantity(Integer.valueOf(map.get("quantity").toString()));
 		cir.save(ci);
+		return ResponseEntity.ok(Map.of("message","ok"));
+	}
+
+	@SuppressWarnings("unchecked")
+	public ResponseEntity<Map<String, String>> checkout(Map<String, Object> map) {
+		List<Map<String, Object>> items = (List<Map<String, Object>>) map.get("items");
+		for (Map<String, Object> tmp : items) {
+			Integer productId = (Integer) ((Map<String, Object>) tmp.get("product")).get("id");
+			Integer quantity = (Integer) tmp.get("quantity");
+			Product product = pr.findById(Long.valueOf(productId)).get();
+			product.setStock(product.getStock() - quantity);
+			pr.save(product);
+		}
+		Cart cart = cr.findByUserId(Long.valueOf(map.get("userId").toString())).get();
+		for(CartItem tmp: cart.getCarItems()) {
+			cir.delete(tmp);
+		}
+		cr.delete(cart);		
 		return ResponseEntity.ok(Map.of("message","ok"));
 	}
 	

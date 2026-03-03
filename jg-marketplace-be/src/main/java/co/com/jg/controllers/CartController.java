@@ -38,4 +38,10 @@ public class CartController {
 	public ResponseEntity<Map<String, String>> setQuantity(@RequestBody Map<String, Object> map) {
 		return cs.setQuantity(map);
 	}
+	
+	@PostMapping(path = "api/checkout")
+	public ResponseEntity<Map<String, String>> checkout(@RequestBody Map<String, Object> map) {
+		return cs.checkout(map);
+	}
+	
 }

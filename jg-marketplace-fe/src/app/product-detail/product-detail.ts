@@ -15,7 +15,7 @@ export class ProductDetail {
   product: any;
   selectedImage: any;
   quantity = 1;
-  quantities = [1, 2, 3, 4, 5];
+  quantities = [1, 2];
   userId = localStorage.getItem('id');
 
   constructor(private route: ActivatedRoute,
@@ -30,6 +30,7 @@ export class ProductDetail {
       this.product.picture,
       this.product.picture,
     ];
+    this.quantities = Array.from({ length: this.product.stock }, (_, i) => i + 1);
     this.selectedImage = this.product.images[0];
   }
 
@@ -38,17 +39,16 @@ export class ProductDetail {
   }
 
   addToCart() {
-    console.log("Agregado al carrito", {
-      product: this.product,
-      quantity: this.quantity
-    });
-    this.http.post('/api/addToCart', {
-      productId: this.product.id,
-      quantity: this.quantity,
-      userId: this.userId
-    }).subscribe(() => {
-      //alert('Producto agregado al carrito');
-      this.router.navigate(['/cart']);
-    });
+    if(this.product.stock < this.quantity) {
+      alert('No hay suficiente stock disponible');
+    } else {
+      this.http.post('/api/addToCart', {
+        productId: this.product.id,
+        quantity: this.quantity,
+        userId: this.userId
+      }).subscribe(() => {
+        this.router.navigate(['/cart']);
+      });
+    }
   }
 }

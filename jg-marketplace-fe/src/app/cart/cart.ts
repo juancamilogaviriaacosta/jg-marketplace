@@ -64,6 +64,14 @@ export class Cart {
       this.items = [...this.items.filter(p => p.id !== item.id)];
        this.cd.detectChanges();
     });
-    
+  }
+
+  checkout() {
+    this.http.post('/api/checkout', { items: this.items, userId: localStorage.getItem('id') })
+    .subscribe(() => {
+      alert('Compra realizada con éxito');
+      this.items = [];
+      this.cd.detectChanges();
+    });
   }
 }
