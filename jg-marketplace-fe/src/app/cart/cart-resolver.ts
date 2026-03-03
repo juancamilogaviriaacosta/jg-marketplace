@@ -11,6 +11,6 @@ export class CartResolver implements Resolve<any[]> {
   constructor(private http: HttpClient) {}
 
   resolve(): Observable<any[]> {
-    return this.http.get<any[]>(`/api/getCart/${2}`);
+    return this.http.get<any[]>(`/api/getCart/${localStorage.getItem('id')}`);
   }
 }

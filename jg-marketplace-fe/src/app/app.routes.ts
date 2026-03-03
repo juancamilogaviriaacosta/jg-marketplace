@@ -11,16 +11,18 @@ import { AdminUsers } from './admin-users/admin-users';
 import { UserMng } from './user-mng/user-mng';
 import { UserResolver } from './admin-users/user-resolver';
 import { Login } from './login/login';
+import { authAdminGuard } from './guards/auth-admin-guard';
+import { authUserGuard } from './guards/auth-user-guard';
 
 export const routes: Routes = [
     { path: '', component: MainProducts, resolve: { items: ProductResolver } },
-    { path: 'admin-products', component: AdminProducts, resolve: { items: ProductResolver } },
-    { path: 'product-mng', component: ProductMng },
-    { path: 'product-mng/:id', component: ProductMng },
-    { path: 'cart', component: Cart, resolve: { items: CartResolver } },
-    { path: 'product-detail/:id', component: ProductDetail, resolve: { product: ProductDetailResolver }},
-    { path: 'admin-users', component: AdminUsers, resolve: { items: UserResolver } },
-    { path: 'user-mng', component: UserMng },
-    { path: 'user-mng/:id', component: UserMng },
+    { path: 'admin-products', component: AdminProducts, resolve: { items: ProductResolver }, canActivate: [authAdminGuard] },
+    { path: 'product-mng', component: ProductMng, canActivate: [authAdminGuard]},
+    { path: 'product-mng/:id', component: ProductMng, canActivate: [authAdminGuard] },
+    { path: 'cart', component: Cart, resolve: { items: CartResolver }, canActivate: [authUserGuard] },
+    { path: 'product-detail/:id', component: ProductDetail, resolve: { product: ProductDetailResolver }, canActivate: [authUserGuard] },
+    { path: 'admin-users', component: AdminUsers, resolve: { items: UserResolver }, canActivate: [authAdminGuard] },
+    { path: 'user-mng', component: UserMng, canActivate: [authAdminGuard] },
+    { path: 'user-mng/:id', component: UserMng, canActivate: [authAdminGuard] },
     { path: 'login', component: Login },
 ];

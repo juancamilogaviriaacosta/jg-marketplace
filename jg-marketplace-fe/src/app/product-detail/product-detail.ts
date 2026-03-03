@@ -16,6 +16,7 @@ export class ProductDetail {
   selectedImage: any;
   quantity = 1;
   quantities = [1, 2, 3, 4, 5];
+  userId = localStorage.getItem('id');
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -44,7 +45,7 @@ export class ProductDetail {
     this.http.post('/api/addToCart', {
       productId: this.product.id,
       quantity: this.quantity,
-      userId: 2
+      userId: this.userId
     }).subscribe(() => {
       //alert('Producto agregado al carrito');
       this.router.navigate(['/cart']);

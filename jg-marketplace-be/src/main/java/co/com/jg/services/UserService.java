@@ -2,6 +2,7 @@ package co.com.jg.services;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +33,14 @@ public class UserService {
 	public ResponseEntity<Map<String, String>> deleteById(Long id) {
 		repo.deleteById(id);
 		return ResponseEntity.ok(Map.of("message","deleted"));
+	}
+
+	public User auth(Map<String, String> map) {
+		Optional<User> byUsername = repo.findByUsername(map.get("username"));
+		if(byUsername.isPresent() && byUsername.get().getPassword().equals(map.get("password"))) {
+			return byUsername.get();
+		}
+		return null;
 	}
 	
 }

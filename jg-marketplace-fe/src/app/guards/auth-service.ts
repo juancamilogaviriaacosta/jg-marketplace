@@ -18,6 +18,7 @@ export class AuthService {
   }
 
   logout() {
+    localStorage.removeItem('id');
     localStorage.removeItem('role');
     window.location.href = '/';
   }

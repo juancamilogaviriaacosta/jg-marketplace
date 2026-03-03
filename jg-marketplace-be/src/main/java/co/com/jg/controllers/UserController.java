@@ -21,6 +21,11 @@ public class UserController {
 	@Autowired
 	private UserService us;
 
+	@PostMapping(path = "api/auth")
+    public User auth(@RequestBody Map<String, String> map) {
+		return us.auth(map);
+	}
+	
 	@GetMapping(path = "api/getUsers")
     public List<User> getUsers() {
 		return us.findAll();
