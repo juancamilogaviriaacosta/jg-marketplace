@@ -3,10 +3,13 @@ import { AdminProducts } from './admin-products/admin-products';
 import { MainProducts } from './main-products/main-products';
 import { ProductResolver } from './main-products/product-resolver';
 import { ProductMng } from './product-mng/product-mng';
+import { Cart } from './cart/cart';
+import { CartResolver } from './cart/cart-resolver';
 
 export const routes: Routes = [
     { path: '', component: MainProducts, resolve: { items: ProductResolver } },
     { path: 'admin-products', component: AdminProducts, resolve: { items: ProductResolver } },
     { path: 'product-mng', component: ProductMng },
     { path: 'product-mng/:id', component: ProductMng },
+    { path: 'cart', component: Cart, resolve: { items: CartResolver } },
 ];

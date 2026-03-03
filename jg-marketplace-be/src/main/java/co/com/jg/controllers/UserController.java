@@ -1,5 +1,5 @@
 package co.com.jg.controllers;
 
-public class AuthController {
+public class UserController {
 
 }

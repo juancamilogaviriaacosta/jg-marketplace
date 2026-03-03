@@ -1,0 +1,63 @@
+<div class="cart-container">
+  <!-- IZQUIERDA: PRODUCTOS -->
+  <div class="cart-products">
+    <h2>Carrito de compras</h2>
+    @for (item of items; track item.id) {
+    <div class="product-card">
+      <img [src]="item.product.picture" class="product-image"/>
+      <div class="product-info">
+        <div class="product-title">
+          {{item.product.name}}
+        </div>
+        <div class="product-price">
+          $ {{item.product.price | number}}
+        </div>
+        <div class="quantity">
+          <button (click)="decrease(item)">
+            -
+          </button>
+          <span>
+            {{item.quantity}}
+          </span>
+          <button (click)="increase(item)">
+            +
+          </button>
+        </div>
+      </div>
+      <div class="product-total">
+        $ {{item.product.price * item.quantity | number}}
+        <button class="remove-btn"
+                (click)="remove(item)">
+          Eliminar
+        </button>
+      </div>
+    </div>
+    }
+  </div>
+
+
+  <!-- DERECHA: RESUMEN -->
+  <div class="cart-summary">
+    <h3>Resumen de compra</h3>
+    <div class="summary-row">
+      <span>Subtotal</span>
+      <span>$ {{subtotal | number}}</span>
+    </div>
+    <div class="summary-row">
+      <span>IVA (19%)</span>
+      <span>$ {{iva | number}}</span>
+    </div>
+    <div class="summary-row">
+      <span>Envío</span>
+      <span>$ {{shipping | number}}</span>
+    </div>
+    <hr>
+    <div class="summary-total">
+      <span>Total</span>
+      <span>$ {{total | number}}</span>
+    </div>
+    <button class="checkout-btn">
+      Continuar compra
+    </button>
+  </div>
+</div>

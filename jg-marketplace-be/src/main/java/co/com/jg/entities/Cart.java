@@ -1,11 +1,17 @@
 package co.com.jg.entities;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,13 +25,18 @@ public class Cart {
 
 	@ManyToOne
 	private User user;
+	
+	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
+	private List<CartItem> carItems;
 
 	public Cart() {
 	}
 
-	public Cart(Long id, User user) {
+	public Cart(Long id, User user, List<CartItem> carItems) {
 		this.id = id;
 		this.user = user;
+		this.carItems = carItems;
 	}
 
 	public Long getId() {
@@ -42,5 +53,13 @@ public class Cart {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public List<CartItem> getCarItems() {
+		return carItems;
+	}
+
+	public void setCarItems(List<CartItem> carItems) {
+		this.carItems = carItems;
 	}
 }

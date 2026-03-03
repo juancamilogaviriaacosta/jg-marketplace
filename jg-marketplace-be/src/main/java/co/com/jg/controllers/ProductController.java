@@ -21,11 +21,6 @@ public class ProductController {
 	@Autowired
 	private ProductServices ps;
 	
-	@GetMapping(path = "api/initDatabase")
-    public ResponseEntity<Map<String, String>> initDatabase() {
-		return ps.initDatabase();
-	}
-	
 	@GetMapping(path = "api/getProducts")
     public List<Product> getProducts() {
 		return ps.findAll();
