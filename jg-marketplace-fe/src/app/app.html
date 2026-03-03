@@ -19,15 +19,23 @@
          </div>
       </div>
       <div class="nav">
-         <a href="#">Ofertas</a>
-         <a href="#">Supermercado</a>
-         <a href="#">Tecnología</a>
-         <a href="#">Moda</a>
-         <a href="#">Hogar</a>
-         <a href="#">Vehículos</a>
-         <a [routerLink]="['/cart']">Carrito</a>
-         <a [routerLink]="['/admin-products']">Administrar Productos</a>
-         <a [routerLink]="['/admin-users']">Administrar Usuarios</a>
+         <div class="nav-left">
+            @if(auth.isUser()) {
+               <a [routerLink]="['/cart']">Carrito</a>
+            }
+            
+            @if(auth.isAdmin()) {
+               <a [routerLink]="['/admin-products']">Administrar Productos</a>
+               <a [routerLink]="['/admin-users']">Administrar Usuarios</a>
+            }
+         </div>
+         <div class="nav-right">
+            @if(auth.isloggedIn()) {
+               <a (click)="auth.logout()" style="cursor: pointer;">Cerrar Sesión</a>
+            } @else {
+               <a [routerLink]="['/login']">Iniciar Sesión</a>
+            }
+         </div>
       </div>
    </div>   
 </body>

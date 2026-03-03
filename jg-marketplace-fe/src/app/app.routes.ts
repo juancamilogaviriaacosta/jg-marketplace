@@ -10,6 +10,7 @@ import { ProductDetailResolver } from './product-detail/product-detail-resolver'
 import { AdminUsers } from './admin-users/admin-users';
 import { UserMng } from './user-mng/user-mng';
 import { UserResolver } from './admin-users/user-resolver';
+import { Login } from './login/login';
 
 export const routes: Routes = [
     { path: '', component: MainProducts, resolve: { items: ProductResolver } },
@@ -21,4 +22,5 @@ export const routes: Routes = [
     { path: 'admin-users', component: AdminUsers, resolve: { items: UserResolver } },
     { path: 'user-mng', component: UserMng },
     { path: 'user-mng/:id', component: UserMng },
+    { path: 'login', component: Login },
 ];
