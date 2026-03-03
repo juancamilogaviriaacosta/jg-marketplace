@@ -2,7 +2,14 @@
 
   <h2>Crear Usuario</h2>
 
-  <form #productForm="ngForm" (ngSubmit)="saveUser(productForm)" autocomplete="off">
+  <form 
+    #productForm="ngForm"
+    (ngSubmit)="saveUser(productForm)"
+    autocomplete="off">
+
+    <!-- campo fantasma para engañar a Chrome -->
+    <input type="text" name="fakeusernameremembered" style="display:none">
+    <input type="password" name="fakepasswordremembered" style="display:none">
 
     <div>
       <label>Nombre</label>
@@ -10,6 +17,7 @@
         type="text"
         name="name"
         [(ngModel)]="user.name"
+        autocomplete="off"
         required>
     </div>
 
@@ -19,6 +27,7 @@
         type="text"
         name="username"
         [(ngModel)]="user.username"
+        autocomplete="new-password"
         required>
     </div>
 
@@ -28,6 +37,7 @@
         type="password"
         name="password"
         [(ngModel)]="user.password"
+        autocomplete="new-password"
         required>
     </div>
 
@@ -36,6 +46,7 @@
       <select
         name="role"
         [(ngModel)]="user.role"
+        autocomplete="off"
         required>
 
         <option value="">Seleccione rol</option>
@@ -48,7 +59,7 @@
     <br>
 
     <button type="submit" [disabled]="productForm.invalid">
-      Guardar Producto
+      Guardar Usuario
     </button>
 
   </form>

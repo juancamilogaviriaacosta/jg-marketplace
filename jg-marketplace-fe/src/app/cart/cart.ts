@@ -17,6 +17,9 @@ export class Cart {
     private http: HttpClient,
     private cd: ChangeDetectorRef) {
     this.items = this.route.snapshot.data['items'].carItems;
+    if(!this.items) {
+      this.items = [];
+    }
   }
 
   get subtotal() {
