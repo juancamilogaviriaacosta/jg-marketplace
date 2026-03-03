@@ -1,0 +1,107 @@
+.product-container{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:
+        450px 1fr 320px;
+    gap:30px;
+    margin-top:30px;
+}
+
+/* GALERIA */
+.gallery{
+    display:flex;
+}
+.thumbnails{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.thumb{
+    width:60px;
+    height:60px;
+    object-fit:cover;
+    border:1px solid #ddd;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.main-image img{
+    width:380px;
+    margin-left:20px;
+}
+
+/* INFO */
+.condition{
+    color:gray;
+    margin-bottom:10px;
+}
+
+.title{
+    font-size:22px;
+    font-weight:400;
+}
+
+.price{
+    font-size:32px;
+    margin:20px 0;
+}
+
+.installments{
+
+    color:#00a650;
+    margin-bottom:20px;
+}
+
+.description-title{
+
+    font-size:18px;
+    margin-top:30px;
+}
+
+.description{
+
+    color:#555;
+    margin-top:10px;
+}
+
+/* BUY BOX */
+.buy-box{
+    border:1px solid #eee;
+    padding:20px;
+    border-radius:10px;
+    height:fit-content;
+}
+
+.stock{
+    color:#00a650;
+    margin-bottom:15px;
+}
+
+.quantity{
+    margin-bottom:20px;
+}
+
+.buy-btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    background:#3483fa;
+    color:white;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    margin-bottom:10px;
+}
+
+.buy-now{
+    width:100%;
+    padding:14px;
+    border:none;
+    background:#2968c8;
+    color:white;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+}

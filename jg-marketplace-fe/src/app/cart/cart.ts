@@ -1,5 +1,6 @@
 import { DecimalPipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -12,7 +13,9 @@ export class Cart {
   items: any[] = [];
   shipping = 15000;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute,
+    private http: HttpClient,
+    private cd: ChangeDetectorRef) {
     this.items = this.route.snapshot.data['items'].carItems;
   }
 
@@ -32,15 +35,32 @@ export class Cart {
 
   increase(item: any) {
     item.quantity++;
+    this.setQuantity(item, item.quantity);
   }
 
   decrease(item: any) {
-    if (item.quantity > 1)
+    if (item.quantity > 1) {
       item.quantity--;
+      this.setQuantity(item, item.quantity);
+    }
+  }
+
+  setQuantity(item: any, quantity: number) {
+    this.http.post('/api/setQuantity', {
+      id: item.id,
+      quantity: quantity
+    }).subscribe(() => {
+      this.cd.detectChanges();
+    });
   }
 
   remove(item: any) {
-    this.items =
-      this.items.filter(i => i.id !== item.id);
+    this.http.post('/api/removeFromCart', {
+      id: item.id
+    }).subscribe(() => {
+      this.items = [...this.items.filter(p => p.id !== item.id)];
+       this.cd.detectChanges();
+    });
+    
   }
 }

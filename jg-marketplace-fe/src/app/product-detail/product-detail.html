@@ -1,0 +1,61 @@
+<div class="product-container">
+
+  <!-- IZQUIERDA - GALERIA -->
+  <div class="gallery">
+    <div class="thumbnails">
+        <img *ngFor="let img of product.images"
+           [src]="img"
+           (click)="selectImage(img)"
+           class="thumb"/>      
+    </div>
+    <div class="main-image">
+      <img [src]="selectedImage"/>
+    </div>
+  </div>
+
+  <!-- CENTRO - INFO -->
+  <div class="product-info">
+    <div class="condition">
+      Nuevo | +100 vendidos
+    </div>
+    <h1 class="title">
+      {{product.name}}
+    </h1>
+    <div class="price">
+      $ {{product.price | number}}
+    </div>
+    <div class="installments">
+      en 12x $ {{product.price/12 | number}}
+    </div>
+    <div class="description-title">
+      Descripción
+    </div>
+    <div class="description">
+      {{product.description}}
+    </div>
+  </div>
+
+  <!-- DERECHA - COMPRA -->
+  <div class="buy-box">
+    <div class="stock">
+      Stock disponible
+    </div>
+    <div class="quantity">
+      Cantidad:
+      <select [(ngModel)]="quantity">
+        <option *ngFor="let q of quantities"
+                [value]="q">
+          {{q}}
+        </option>
+      </select>
+
+      ({{product.stock}} disponibles)
+    </div>
+
+    <button
+      class="buy-btn"
+      (click)="addToCart()">
+      Agregar al carrito
+    </button>
+  </div>
+</div>

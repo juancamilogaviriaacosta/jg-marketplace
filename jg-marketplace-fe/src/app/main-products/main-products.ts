@@ -1,7 +1,7 @@
 import { CurrencyPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-products',
@@ -13,9 +13,13 @@ export class MainProducts {
   
   items: any[] = [];
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     this.items = this.route.snapshot.data['items'];
+  }
+
+  goDetails(item: any) {
+    this.router.navigate(['/product-detail', item.id]);
   }
 }
